@@ -9,6 +9,7 @@
 
 using std::vector;
 using std::ofstream;
+using std::cin;
 
 class AppWrap {
 private:
@@ -24,25 +25,29 @@ private:
 	const string DPFILE = "dietPlans.txt";
 	const string EPFILE = "exercisePlans.txt";
 
+	//file streams
+	ofstream outFileStream;
+	ifstream inFileStream;
+
 	/*private member functions*/
 
-	//open file for write
-	ofstream& openFileW(const string &file);
+	//open file for write return 0 for success
+	int openFileW(ofstream &stream, const string &file);
 
-	//open file for read
-	ifstream& openFileR(const string &file);
+	//open file for read return 0 for success
+	int openFileR(ifstream &stream, const string &file);
 
 	//close file
-	void closeFile(ofstream &stream);
-	void closeFile(ifstream &stream);
+	int closeFile(ofstream &stream);
+	int closeFile(ifstream &stream);
 	
 	//loads single plan from file
 	void loadDailyPlan(ifstream &fileStream, DietPlan &plan);
 	void loadDailyPlan(ifstream &fileStream, ExercisePlan &plan);
 
 	//loads entire file
-	void loadWeeklyPlan(ifstream &fileStream, vector<DietPlan> dV);
-	void loadWeeklyPlan(ifstream &fileStream, vector<ExercisePlan> eV);
+	void loadWeeklyPlan(ifstream &fileStream, vector<DietPlan> &dV);
+	void loadWeeklyPlan(ifstream &fileStream, vector<ExercisePlan> &eV);
 
 	//displays single plan
 	void displayDailyPlan(DietPlan &dp);
@@ -87,7 +92,9 @@ public:
 	//get number of DPs
 
 	//public function members
+	void displayMenu();
+
 	void runApp(void);
 
-	void displayMenu();
+	
 };

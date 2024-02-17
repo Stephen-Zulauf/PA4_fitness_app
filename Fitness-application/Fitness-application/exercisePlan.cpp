@@ -30,7 +30,6 @@ ostream& operator<< (ostream& lhs, const ExercisePlan& rhs) {
 	lhs << "Date: " << rhs.gDate() << endl;
 	lhs << "Name: " << rhs.gName() << endl;
 	lhs << "Step Goal: " << rhs.gGoal() << endl;
-	lhs << "----------------" << endl;
 
 	return lhs;
 }

@@ -31,7 +31,6 @@ ostream& operator<< (ostream& lhs, const DietPlan& rhs) {
 	lhs << "Date: " << rhs.gDate() << endl;
 	lhs << "Name: " << rhs.gName() << endl;
 	lhs << "Calorie Goal: " << rhs.gGoal() << endl;
-	lhs << "----------------" << endl;
 
 	return lhs;
 }
