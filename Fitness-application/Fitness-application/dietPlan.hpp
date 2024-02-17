@@ -6,6 +6,7 @@
 
 using std::string;
 using std::ostream;
+using std::ofstream;
 using std::istream;
 using std::endl;
 using std::cout;
@@ -48,6 +49,9 @@ public:
 
 //print a diet plan to output stream
 ostream& operator<< (ostream& lhs, const DietPlan& rhs);
+
+//print a diet plan to output file stream
+ofstream& operator<< (ofstream& lhs, const DietPlan& rhs);
 
 //read a diet plan from input stream (returns stream for chaining)
 //enter format "date,name,goal"

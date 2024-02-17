@@ -34,6 +34,16 @@ ostream& operator<< (ostream& lhs, const ExercisePlan& rhs) {
 	return lhs;
 }
 
+//print a exercise plan to file output stream
+ofstream& operator<< (ofstream& lhs, const ExercisePlan& rhs) {
+	//lhs is cout or output stream
+	lhs << rhs.gName() << endl;
+	lhs << rhs.gGoal() << endl;
+	lhs << rhs.gDate() << endl;
+
+	return lhs;
+}
+
 istream& operator>> (istream& lhs, ExercisePlan& rhs) {
 	string input;
 	lhs >> input;

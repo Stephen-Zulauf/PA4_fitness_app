@@ -24,6 +24,7 @@ void DietPlan::setDate(string newDate) {
 }
 
 //Overloads
+//print a diet plan to output stream
 ostream& operator<< (ostream& lhs, const DietPlan& rhs) {
 
 	//lhs is cout or output stream
@@ -31,6 +32,16 @@ ostream& operator<< (ostream& lhs, const DietPlan& rhs) {
 	lhs << "Name: " << rhs.gName() << endl;
 	lhs << "Calorie Goal: " << rhs.gGoal() << endl;
 	lhs << "----------------" << endl;
+
+	return lhs;
+}
+
+//print a diet plan to output file stream
+ofstream& operator<< (ofstream& lhs, const DietPlan& rhs) {
+	//lhs is cout or output stream
+	lhs << rhs.gName() << endl;
+	lhs << rhs.gGoal() << endl;
+	lhs << rhs.gDate() << endl;
 
 	return lhs;
 }

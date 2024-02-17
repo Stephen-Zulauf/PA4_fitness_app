@@ -10,6 +10,7 @@ using std::istream;
 using std::endl;
 using std::cout;
 using std::ifstream;
+using std::ofstream;
 
 class ExercisePlan {
 private:
@@ -49,6 +50,9 @@ public:
 
 //print a exercise plan to output stream
 ostream& operator<< (ostream& lhs, const ExercisePlan& rhs);
+
+//print a exercise plan to file output stream
+ofstream& operator<< (ofstream& lhs, const ExercisePlan& rhs);
 
 //read a exercise plan from input stream (returns stream for chaining)
 //enter format "date,name,goal"

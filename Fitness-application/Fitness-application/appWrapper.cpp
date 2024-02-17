@@ -110,6 +110,47 @@ void AppWrap::displayWeeklyPlan(vector<ExercisePlan>& eV) {
 	}
 }
 
+//stores single plan to file
+void AppWrap::storeDailyPlan(ofstream& outStream, DietPlan& dp) {
+	outStream << dp;
+}
+void AppWrap::storeDailyPlan(ofstream& outStream, ExercisePlan& ep) {
+	outStream << ep;
+}
+
+//stores all plans to file
+void AppWrap::storeWeeklyPlan(ofstream& outStream, vector<DietPlan>& dV) {
+	size_t size = dV.size();
+	int i;
+	for (i = 0; i < size; i++) {
+		//dont insert blank line at beginning
+		if (i == 0) {
+			outStream << dV[i];
+		}
+		else {
+			outStream << endl;
+			outStream << dV[i];
+		}
+		
+
+	}
+}
+void AppWrap::storeWeeklyPlan(ofstream& outStream, vector<ExercisePlan>& eV) {
+	size_t size = eV.size();
+	int i;
+	for (i = 0; i < size; i++) {
+		//dont insert blank line at beginning
+		if (i == 0) {
+			outStream << eV[i];
+		}
+		else {
+			outStream << endl;
+			outStream << eV[i];
+		}
+
+	}
+}
+
 void AppWrap::displayEditMenu() {
 	system("cls");
 	cout << " (      (                  )         (      (     " << endl;
@@ -356,9 +397,35 @@ void AppWrap::runApp(void) {
 			break;
 		case 3:
 			//3. Store weekly diet plan to file.
+			if (vD.size() != 0 && openFileW(outFileStream, DPFILE) == 0) {
+				storeWeeklyPlan(outFileStream, vD);
+				displayMenu();
+				cout << "Saved Diet Plans to " << DPFILE << endl;
+			}
+			else if (vD.size() < 7) {
+				displayMenu();
+				cout << "No Diet data loaded" << endl;
+			}
+			else {
+				displayMenu();
+				cout << "Problem with" << DPFILE << endl;
+			}
 			break;
 		case 4:
 			//4. Store weekly exercise plan to file.
+			if (vE.size() != 0 && openFileW(outFileStream, EPFILE) == 0) {
+				storeWeeklyPlan(outFileStream, vE);
+				displayMenu();
+				cout << "Saved Exercise Plans to " << EPFILE << endl;
+			}
+			else if (vE.size() < 7) {
+				displayMenu();
+				cout << "No Exercise data loaded" << endl;
+			}
+			else {
+				displayMenu();
+				cout << "Problem with" << EPFILE << endl;
+			}
 			break;
 		case 5:
 			//5. Display weekly diet plan to screen.
@@ -403,16 +470,53 @@ void AppWrap::runApp(void) {
 			break;
 		case 7:
 			//7. Edit daily diet plan
-			editMenu(vD);
-			displayMenu();
+			if (vD.size() != 0) {
+				editMenu(vD);
+				displayMenu();
+			}
+			else {
+				displayMenu();
+				cout << "No Diet data found";
+			}
+			
 			break;
 		case 8:
 			//8. Edit daily exercise plan.
-			editMenu(vE);
-			displayMenu();
+			if (vE.size() != 0) {
+				editMenu(vE);
+				displayMenu();
+			}
+			else {
+				displayMenu();
+				cout << "No Exercise data found";
+			}
+			
 			break;
 		case 9:
 			//9. Exit write the most recent weekly plans
+			if (vD.size() != 0 && openFileW(outFileStream, DPFILE) == 0) {
+				storeWeeklyPlan(outFileStream, vD);
+				displayMenu();
+				cout << "Saved Diet Plans to " << DPFILE << endl;
+			}
+			else if (vD.size() < 7) {
+				displayMenu();
+				cout << "No exercise data loaded" << endl;
+			}
+			else {
+				displayMenu();
+				cout << "Problem with" << EPFILE << endl;
+			}
+			if (vE.size() != 0 && openFileW(outFileStream, EPFILE) == 0) {
+				storeWeeklyPlan(outFileStream, vE);
+				cout << "Saved Exercise Plans to " << EPFILE << endl;
+			}
+			else if (vE.size() < 7) {
+				cout << "No Exercise data loaded" << endl;
+			}
+			else {
+				cout << "Problem with" << EPFILE << endl;
+			}
 			break;
 		}
 	}
