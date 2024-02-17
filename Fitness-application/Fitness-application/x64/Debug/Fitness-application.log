@@ -1,3 +1,5 @@
 ﻿  appWrapper.cpp
-C:\Users\ZU420\source\repos\122real\PA4\Fitness-application\Fitness-application\appWrapper.cpp(114,10): warning C4129: '(': unrecognized character escape sequence
+C:\Users\ZU420\source\repos\122real\PA4\Fitness-application\Fitness-application\appWrapper.cpp(117,10): warning C4129: '(': unrecognized character escape sequence
+C:\Users\ZU420\source\repos\122real\PA4\Fitness-application\Fitness-application\appWrapper.cpp(139,10): warning C4129: '(': unrecognized character escape sequence
+C:\Users\ZU420\source\repos\122real\PA4\Fitness-application\Fitness-application\appWrapper.cpp(279,10): warning C4129: '(': unrecognized character escape sequence
   Fitness-application.vcxproj -> C:\Users\ZU420\source\repos\122real\PA4\Fitness-application\x64\Debug\Fitness-application.exe

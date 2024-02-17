@@ -29,6 +29,9 @@ private:
 	ofstream outFileStream;
 	ifstream inFileStream;
 
+	//days array
+	string Days[7] = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
 	/*private member functions*/
 
 	//open file for write return 0 for success
@@ -65,6 +68,14 @@ private:
 	void storeWeeklyPlan(ofstream& outStream, vector<DietPlan> &dV);
 	void storeWeeklyPlan(ofstream& outStream, vector<ExercisePlan> &eV);
 
+	//edit daily plan
+	void displayEditMenu();
+	void displayDayEditMenu();
+	void editMenu(vector<DietPlan>& dV);
+	void editMenu(vector<ExercisePlan>& eV);
+	void editDailyPlan(DietPlan& dP);
+	void editDailyPlan(ExercisePlan& eP);
+
 public:
 	//constructors
 
@@ -73,28 +84,11 @@ public:
 	//destructor
 
 	/*setters*/
-	//push EP to front
-
-	//push EP to back
-
-	//push DP to front
-
-	//push DP to back
 
 	/*getters*/
-
-	//get next EP
-
-	//get number of EPs
-	
-	//get next DP
-
-	//get number of DPs
 
 	//public function members
 	void displayMenu();
 
 	void runApp(void);
-
-	
 };

@@ -91,16 +91,181 @@ void AppWrap::displayDailyPlan(ExercisePlan& ep) {
 //displays week plan
 void AppWrap::displayWeeklyPlan(vector<DietPlan>& dV) {
 	size_t size = dV.size();
-	size_t i;
+	int i;
 	for (i = 0; i < size; i++) {
+		
+		cout << Days[i] << endl;
 		displayDailyPlan(dV[i]);
+		
 	}
 }
 void AppWrap::displayWeeklyPlan(vector<ExercisePlan>& eV) {
 	size_t size = eV.size();
-	size_t i;
+	int i;
 	for (i = 0; i < size; i++) {
+
+		cout << Days[i] << endl;
 		displayDailyPlan(eV[i]);
+		
+	}
+}
+
+void AppWrap::displayEditMenu() {
+	system("cls");
+	cout << " (      (                  )         (      (     " << endl;
+	cout << " )\\ )   )\\ )    *   )   ( /(         )\\ )   )\\ )  " << endl;
+	cout << "(()/(  (()/(  ` )  /(   )\())  (    (()/(  (()/(  " << endl;
+	cout << "(_))_| (_))   (_(_())   _((_) ((_)  (_))   (_))   " << endl;
+	cout << "| |_   |_ _|  |_   _|  | \\| | | __| / __|  / __|" << endl;
+	cout << "| __|   | |     | |    | .` | | _|  \\__ \\  \\__ \\ " << endl;
+	cout << "|_|    |___|    |_|    |_|\\_| |___| |___/  |___/ " << endl;
+	cout << "--------------------------------------------------" << endl;
+	cout << "| Choose a day of the week to edit:              |" << endl;
+	cout << "| 1) Monday                                      |" << endl;
+	cout << "| 2) Tuesday                                     |" << endl;
+	cout << "| 3) Wednesday                                   |" << endl;
+	cout << "| 4) Thursday                                    |" << endl;
+	cout << "| 5) Friday                                      |" << endl;
+	cout << "| 6) Saturday                                    |" << endl;
+	cout << "| 7) Sunday                                      |" << endl;
+	cout << "| 8) Exit                                        |" << endl;
+	cout << "--------------------------------------------------" << endl;
+}
+
+void AppWrap::displayDayEditMenu() {
+	system("cls");
+	cout << " (      (                  )         (      (     " << endl;
+	cout << " )\\ )   )\\ )    *   )   ( /(         )\\ )   )\\ )  " << endl;
+	cout << "(()/(  (()/(  ` )  /(   )\())  (    (()/(  (()/(  " << endl;
+	cout << "(_))_| (_))   (_(_())   _((_) ((_)  (_))   (_))   " << endl;
+	cout << "| |_   |_ _|  |_   _|  | \\| | | __| / __|  / __|" << endl;
+	cout << "| __|   | |     | |    | .` | | _|  \\__ \\  \\__ \\ " << endl;
+	cout << "|_|    |___|    |_|    |_|\\_| |___| |___/  |___/ " << endl;
+	cout << "--------------------------------------------------" << endl;
+	cout << "| What do you want to edit?:                     |" << endl;
+	cout << "| 1) Name                                        |" << endl;
+	cout << "| 2) Goal                                        |" << endl;
+	cout << "| 3) Date                                        |" << endl;
+	cout << "| 4) Exit                                        |" << endl;
+	cout << "--------------------------------------------------" << endl;
+}
+void AppWrap::editMenu(vector<DietPlan>& dV) {
+
+	//print menu
+	displayEditMenu();
+
+	//menu functionality
+	string buff;
+	int choice = 0;
+
+	while (choice != 8) {
+		cin >> buff;
+		choice = stoi(buff);
+		if (choice < 8) {
+			editDailyPlan(dV[choice-1]);
+		}
+		displayEditMenu();
+	}
+}
+
+void AppWrap::editMenu(vector<ExercisePlan>& eV) {
+
+	//print menu
+	displayEditMenu();
+
+	//menu functionality
+	string buff;
+	int choice = 0;
+
+	while (choice != 8) {
+		cin >> buff;
+		choice = stoi(buff);
+		if (choice < 8) {
+			editDailyPlan(eV[choice-1]);
+		}
+		displayEditMenu();
+		
+	}
+}
+
+void AppWrap::editDailyPlan(DietPlan& dP) {
+
+	//print menu
+	displayDayEditMenu();
+
+	//menu functionality
+	string buff;
+	string entry;
+	int choice = 0;
+
+	while (choice != 4) {
+		cin >> buff;
+		choice = stoi(buff);
+		switch (choice) {
+		case 1:
+			//edit name
+			cout << "Enter new Name" << endl;
+			cin >> entry;
+			dP.setName(entry);
+			displayDayEditMenu();
+			break;
+		case 2:
+			//edit goal
+			cout << "Enter new Goal" << endl;
+			cin >> entry;
+			dP.setGoal(stoi(entry));
+			displayDayEditMenu();
+			break;
+		case 3:
+			//edit date
+			cout << "Enter new Date" << endl;
+			cin >> entry;
+			dP.setDate(entry);
+			displayDayEditMenu();
+			break;
+		default:
+			displayDayEditMenu();
+		}
+	}
+	
+}
+void AppWrap::editDailyPlan(ExercisePlan& eP) {
+	//print menu
+	displayDayEditMenu();
+
+	//menu functionality
+	string buff;
+	string entry;
+	int choice = 0;
+
+	while (choice != 4) {
+		cin >> buff;
+		choice = stoi(buff);
+		switch (choice) {
+		case 1:
+			//edit name
+			cout << "Enter new Name" << endl;
+			cin >> entry;
+			eP.setName(entry);
+			displayDayEditMenu();
+			break;
+		case 2:
+			//edit goal
+			cout << "Enter new Goal" << endl;
+			cin >> entry;
+			eP.setGoal(stoi(entry));
+			displayDayEditMenu();
+			break;
+		case 3:
+			//edit date
+			cout << "Enter new Date" << endl;
+			cin >> entry;
+			eP.setDate(entry);
+			displayDayEditMenu();
+			break;
+		default:
+			displayDayEditMenu();
+		}
 	}
 }
 
@@ -238,9 +403,13 @@ void AppWrap::runApp(void) {
 			break;
 		case 7:
 			//7. Edit daily diet plan
+			editMenu(vD);
+			displayMenu();
 			break;
 		case 8:
 			//8. Edit daily exercise plan.
+			editMenu(vE);
+			displayMenu();
 			break;
 		case 9:
 			//9. Exit write the most recent weekly plans
